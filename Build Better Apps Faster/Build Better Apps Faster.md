@@ -22,11 +22,11 @@
 
 ---
 
-# [fit]![inline](/Users/piercifani/Library/Mobile Documents/com~apple~CloudDocs/Deckset/Build Better Apps Faster/Assets/Deliberry.PNG) ![inline](/Users/piercifani/Library/Mobile Documents/com~apple~CloudDocs/Deckset/Build Better Apps Faster/Assets/Instagram.PNG) ![inline](/Users/piercifani/Library/Mobile Documents/com~apple~CloudDocs/Deckset/Build Better Apps Faster/Assets/Zara.PNG)
+# [fit]![inline](~/Workspace/BlurredSoftware/Presentations/Build Better Apps Faster/Assets/Deliberry.PNG) ![inline](~/Workspace/BlurredSoftware/Presentations/Build Better Apps Faster/Assets/Instagram.PNG) ![inline](~/Workspace/BlurredSoftware/Presentations/Build Better Apps Faster/Assets/Zara.PNG)
 
 ---
 
-# [fit]![inline](/Users/piercifani/Library/Mobile Documents/com~apple~CloudDocs/Deckset/Build Better Apps Faster/Assets/Netflix.PNG) ![inline](/Users/piercifani/Library/Mobile Documents/com~apple~CloudDocs/Deckset/Build Better Apps Faster/Assets/Tinder.PNG) ![inline](/Users/piercifani/Library/Mobile Documents/com~apple~CloudDocs/Deckset/Build Better Apps Faster/Assets/MLB.PNG)
+# [fit]![inline](~/Workspace/BlurredSoftware/Presentations/Build Better Apps Faster/Assets/Netflix.PNG) ![inline](~/Workspace/BlurredSoftware/Presentations/Build Better Apps Faster/Assets/Tinder.PNG) ![inline](~/Workspace/BlurredSoftware/Presentations/Build Better Apps Faster/Assets/MLB.PNG)
 
 ---
 # Thank you!
