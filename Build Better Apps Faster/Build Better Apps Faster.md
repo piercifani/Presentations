@@ -1,3 +1,5 @@
+Theme: Ostrich
+
 # Build<br/>Apps 
 
 ^ Recall how they wanted you to make an app with calendar, a photo gallery, a chat for nickles. Or how "a simple App like Instagram"
@@ -66,6 +68,8 @@
 ![](https://i.imgur.com/WzjI2He.png) 
 ![](https://i.imgur.com/5ATQLlf.png) 
 ![](https://i.imgur.com/LpKpDMB.png)
+
+^ If we only try to build a generic CollectionViewDataSource, we'll be falling short 
 
 ---
 
@@ -191,8 +195,8 @@ this happened:
 ```swift
 
 public protocol ViewModelConfigurable {
-    associatedtype T
-    func configureFor(viewModel viewModel: T) -> Void
+    associatedtype VM
+    func configureFor(viewModel viewModel: VM) -> Void
 }
 
 public protocol ViewModelReusable: ViewModelConfigurable {
@@ -223,6 +227,30 @@ extension ViewModelReusable where Self: UICollectionViewCell {
 ```
 
 ---
+## Map one model object to one cell kind **at compile time**
+
+---
+
+```swift
+
+class CollectionViewStatefulDataSource <Model, Cell:ViewModelReusable
+				where Cell:UICollectionViewCell	> {
+
+	typealias ModelMapper = (Model) -> (Cell.VM)
+
+    weak var collectionView: UICollectionView?
+    let mapper: ModelMapper	
+    var state: ListState<Model> {
+        didSet {
+            collectionView?.reloadData()
+        }
+    }			
+}
+```
+
+---
+
+![](http://i.giphy.com/13HgwGsXF0aiGY.gif)
 
 ---
 
