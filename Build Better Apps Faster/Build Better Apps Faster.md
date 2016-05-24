@@ -216,7 +216,7 @@ public enum ReuseType {
 
 extension ViewModelReusable where Self: UICollectionViewCell {
     public static var reuseIdentifier: String {
-        return NSStringFromClass(self).componentsSeparatedByString(".").last!
+        return NSStringFromClass(self)
     }
     
     public static var reuseType: ReuseType {
@@ -262,6 +262,216 @@ class CollectionViewStatefulDataSource <Model, Cell:ViewModelReusable
 ---
 
 ![fit](https://i.imgur.com/ganJa2m.png)
+
+---
+
+```objectivec
+	ConfigurationLogic *logic = [ConfigurationLogic currentConfiguration];
+	
+    [NetworkFetcher callService:@"/users"
+                           host:[logic baseURL]
+                         method:GET
+                       postData:nil
+                     bodyInJSON:NO
+                       hasCache:YES
+                timeoutInterval:[logic servicesTimeOut]
+                 successHandler:successHandler
+                 failureHandler:failureHandler];
+```
+
+---
+
+```swift
+    func lookForStockForSymbols (symbol : String, handler : FetchSymbolHandler?) -> StockFetcherOperation {
+
+        let parameters = [
+            "input" : symbol
+        ]
+        
+        let request = networkFetcher.request(
+            .GET,
+            "http://dev.markitondemand.com/Api/v2/Lookup/json",
+            parameters:parameters ,
+            encoding:.URL
+        )
+        
+        request.responseJSON { (_, _, operationResult) -> Void in
+            /**
+             Some code
+             */
+        }
+        
+        return StockFetcherOperation(request: request)
+    }
+    
+```
+
+---
+
+![right](http://i.giphy.com/ujUdrdpX7Ok5W.gif)
+
+# More protocols
+
+---
+
+```swift
+/**
+ Protocol used to describe what is needed
+ in order to send REST API requests.
+*/
+public protocol Endpoint {
+    
+    /// The path for the request
+    var path: String { get }
+    
+    /// The HTTPMethod for the request
+    var method: HTTPMethod { get }
+    
+    /// Optional parameters for the request
+    var parameters: [String : AnyObject]? { get }
+    
+    /// How the parameters should be encoded
+    var parameterEncoding: HTTPParameterEncoding { get }
+    
+    /// The HTTP headers to be sent
+    var httpHeaderFields: [String : String]? { get }
+}
+```
+
+---
+```swift
+
+//  This is the default implementation for Endpoint 
+extension Endpoint {
+    public var method: HTTPMethod {
+        return .GET
+    }
+    
+    var parameters: [String : AnyObject]? {
+        return nil
+    }
+    
+    public var parameterEncoding: HTTPParameterEncoding {
+        return .URL
+    }
+    
+    public var httpHeaderFields: [String : String]? {
+        return nil
+    }
+}
+
+```
+
+---
+
+```swift
+enum AuthenticationAPI: Endpoint {
+    case LoginFacebook(token: String)
+}
+```
+    
+---
+
+```swift
+extension AuthenticationAPI: Endpoint {
+    var path: String {
+        switch self {
+        case .LoginFacebook(_):
+            return "/authentication"
+        }
+    }
+    var method: HTTPMethod {
+        switch self {
+        case .LoginFacebook(_):
+            return .POST
+        }
+    }
+    var parameters: [String : AnyObject]? {
+        switch self {
+        case .LoginFacebook(let token):
+            return [
+                "token" : token
+            ]
+        }
+    }
+}
+```
+
+---
+
+```swift
+enum UsersAPI {
+    case Users(SearchFilter)
+    case UserDetails(UUID)
+    case UserPictures(UUID)
+}
+```
+
+---
+
+```swift
+extension UsersAPI: Endpoint {
+    public var path: String {
+        switch self {
+        case .Users(_):
+            return "/users"
+        case .UserDetails(let uuid):
+            return "/users/\(uuid)"
+        case .UserPictures(let uuid):
+            return "/users/\(uuid)/pictures"
+        }
+    }
+
+    public var parameters: [String : AnyObject]? {
+        switch self {
+        case .Users(let filter):
+            var params = [String : AnyObject]()
+            params["min_age"] = filter.minAge
+            params["max_age"] = filter.maxAge
+            params["min_dist"] = filter.minDistance
+            params["max_dist"] = filter.maxDistance
+            params["lat"] = filter.latitude
+            params["long"] = filter.longitude
+            return params
+        default:
+            return nil
+        }
+    }
+}
+```
+
+---
+> "Applications interacting with web applications in a significant manner are encouraged to have custom types conform to `URLRequestConvertible` as a way to ensure consistency of requested endpoints."
+
+-- @mattt[^2]
+
+[^2]: Alamofire's [Readme](https://github.com/Alamofire/Alamofire).
+
+---
+
+```swift
+/**
+    Types adopting the `URLRequestConvertible` protocol can be used to construct URL requests.
+*/
+public protocol URLRequestConvertible {
+    /// The URL request.
+    var URLRequest: NSMutableURLRequest { get }
+}
+
+protocol Endpoint: URLRequestConvertible {
+	
+	/* The other stuff */
+	
+    var URLRequest: NSMutableURLRequest {
+        let request = NSMutableURLRequest(URL: NSURL(string: path)!)
+        request.HTTPMethod = method.rawValue
+        request.allHTTPHeaderFields = httpHeaderFields
+        let requestTuple = parameterEncoding.encode(request, parameters: parameters)
+        return requestTuple.0
+    }
+}
+
+```
 
 ---
 
