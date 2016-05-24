@@ -54,20 +54,19 @@ Theme: Ostrich
 
 ---
 
-### Generic
-### `UICollectionViewDataSource`
+### **1.** Generic `UICollectionViewDataSource`
 
 ---
 
-![](https://i.imgur.com/gUyyiTs.png) 
-![](https://i.imgur.com/k336ijZ.png) 
-![](https://i.imgur.com/VwDrXRW.png)
+![fit](https://i.imgur.com/gUyyiTs.png) 
+![fit](https://i.imgur.com/k336ijZ.png) 
+![fit](https://i.imgur.com/VwDrXRW.png)
 
 ---
 
-![](https://i.imgur.com/WzjI2He.png) 
-![](https://i.imgur.com/5ATQLlf.png) 
-![](https://i.imgur.com/LpKpDMB.png)
+![fit](https://i.imgur.com/WzjI2He.png) 
+![fit](https://i.imgur.com/5ATQLlf.png) 
+![fit](https://i.imgur.com/LpKpDMB.png)
 
 ^ If we only try to build a generic CollectionViewDataSource, we'll be falling short 
 
@@ -251,6 +250,25 @@ class CollectionViewStatefulDataSource <Model, Cell:ViewModelReusable
 ---
 
 ![](http://i.giphy.com/13HgwGsXF0aiGY.gif)
+
+---
+
+### **2.** Easy to reason networking
+
+---
+
+![fit](https://i.imgur.com/iThwz18.png)
+
+---
+
+![fit](https://i.imgur.com/ganJa2m.png)
+
+---
+
+# Available for:
+- Consulting
+- Audit
+- Training
 
 ---
 
