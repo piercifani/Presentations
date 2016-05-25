@@ -13,24 +13,15 @@ Theme: Ostrich
 ## Software has always been about building **abstractions**
 ---
 
-## Bit -> Byte
+### Bit -> Byte
 
-^ We went from the bit, which is the software equivalent of a 5V/0V signal, to the byte, because it was easier to represent words and numbers with it
+### Byte -> Assembly
 
----
-## Byte -> Assembly
+### Assembly -> C
 
-^ Then assembly helped us make operations with words with bytes easier
+### C -> Objective C
 
----
-## Assembly -> C
-
-^ Then C came along, a lot easier because we didn't have to learn about memory registers, and allowed us to split our code in different functions 
-
----
-## C -> Objective C
-
-^ The Smalltalk branch of Software Engineering created ObjC in order to compose problems as the interaction of objects, passing messages to each others to complete the problem 
+^ We went from the bit, which is the software equivalent of a 5V/0V signal, to the byte, because it was easier to represent words and numbers with it. Then assembly helped us make operations with words with bytes easier, Then C came along, a lot easier because we didn't have to learn about memory registers, and allowed us to split our code in different functions. The Smalltalk branch of Software Engineering created ObjC in order to compose problems as the interaction of objects, passing messages to each others to complete the problem 
 
 ---
 ## Objective C -> **Swift**
@@ -129,7 +120,7 @@ public enum ListState<T> {
 
 private func fetchData() {
     
-    list.state = .Loading
+    collectionView.state = .Loading
     
     searchUserInteractor.fetchLocationAndUsers() { [weak self] result in
         
@@ -137,9 +128,9 @@ private func fetchData() {
         
         switch result {
         case .Failure(let error):
-            strongSelf.list.state = .Failure(error: error)
+            strongSelf.collectionView.state = .Failure(error: error)
         case .Success(let users):
-            strongSelf.list.state = .Loaded(data: users)
+            strongSelf.collectionView.state = .Loaded(data: users)
         }
     }
 }
@@ -253,6 +244,13 @@ class CollectionViewStatefulDataSource <Model, Cell:ViewModelReusable
 
 ---
 
+# Possible improvements:
+- Pull to refresh
+- Inifite scrolling
+- Support for `n` sections
+
+---
+
 ### **2.** Easy to reason networking
 
 ---
@@ -305,6 +303,15 @@ class CollectionViewStatefulDataSource <Model, Cell:ViewModelReusable
     }
     
 ```
+
+---
+
+## Objectives:
+
+1. Composability
+2. Sensitive default values
+3. Readability
+4. Self documented
 
 ---
 
@@ -441,7 +448,7 @@ extension UsersAPI: Endpoint {
 ```
 
 ---
-> "Applications interacting with web applications in a significant manner are encouraged to have custom types conform to `URLRequestConvertible` as a way to ensure consistency of requested endpoints."
+> "Applications interacting with web services in a significant manner are encouraged to have custom types conform to `URLRequestConvertible` as a way to ensure consistency of requested endpoints."
 
 -- @mattt[^2]
 
@@ -475,9 +482,24 @@ protocol Endpoint: URLRequestConvertible {
 
 ---
 
+# Possible improvements:
+- Multiple environments
+- Authentication tokens
+- Response parsing
+
+
+---
+
+## Build abstractions **on top** of the problems we're solving **over and over**
+---
+
+![fit](https://i.imgur.com/SvletJq.png)
+
+---
+
 # Available for:
 - Consulting
-- Audit
+- Auditing
 - Training
 
 ---
