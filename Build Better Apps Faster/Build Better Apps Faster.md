@@ -240,7 +240,9 @@ class CollectionViewStatefulDataSource <Model, Cell:ViewModelReusable
 
 ---
 
-![](http://i.giphy.com/13HgwGsXF0aiGY.gif)
+![left](http://i.giphy.com/qekFitIbPEPBK.gif)
+
+# To the **Playground**
 
 ---
 
@@ -317,7 +319,7 @@ class CollectionViewStatefulDataSource <Model, Cell:ViewModelReusable
 
 ![right](http://i.giphy.com/ujUdrdpX7Ok5W.gif)
 
-# More protocols
+# More **protocols**
 
 ---
 
