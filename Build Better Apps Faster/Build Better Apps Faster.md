@@ -532,6 +532,13 @@ protocol Endpoint: URLRequestConvertible {
 
 ---
 
+# Available for:
+- Consulting
+- Auditing
+- Training
+
+---
+
 # Thank you!
 ### @piercifani
 ### pcifani@blurredsoftware.com
