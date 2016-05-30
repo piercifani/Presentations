@@ -5,6 +5,10 @@ Theme: Ostrich
 ^ Recall how they wanted you to make an app with calendar, a photo gallery, a chat for nickles. Or how "a simple App like Instagram"
 
 ---
+
+### People take apps for granted
+
+---
 # Build **Better**<br/>Apps **Faster**
 ### Pierluigi Cifani
 
@@ -31,7 +35,11 @@ Theme: Ostrich
 ### **Swift** enables us to build **abstractions** that are closer to our **problem domain**
 
 
-^ And this is one of the reasons for Swift: solve the required business problems using composability of different types 
+^ And this is one of the reasons for Swift: solve the required business problems using composability of different types. The intent of your code is more explicit!
+
+---
+
+### ≈ 60% of the code we write is "just" REST client code
 
 ---
 
@@ -41,11 +49,11 @@ Theme: Ostrich
 
 2. Easy to reason networking
 
-3. `¯\_(ツ)_/¯`
-
 ---
 
 ### **1.** Generic `UICollectionViewDataSource`
+
+^ It's more flexible and visual than a table, and it's a safer bet for the future
 
 ---
 
@@ -53,13 +61,15 @@ Theme: Ostrich
 ![fit](https://i.imgur.com/k336ijZ.png) 
 ![fit](https://i.imgur.com/VwDrXRW.png)
 
+^ If we only try to build a generic CollectionViewDataSource, we'll be falling short 
+
 ---
 
 ![fit](https://i.imgur.com/WzjI2He.png) 
 ![fit](https://i.imgur.com/5ATQLlf.png) 
 ![fit](https://i.imgur.com/LpKpDMB.png)
 
-^ If we only try to build a generic CollectionViewDataSource, we'll be falling short 
+^ However, not everyone displays just a UIActivityIndicator 
 
 ---
 
@@ -246,6 +256,10 @@ class CollectionViewStatefulDataSource <Model, Cell:ViewModelReusable
 
 ---
 
+![](https://i.imgur.com/vWEGREy.png)
+
+---
+
 # Possible improvements:
 - Pull to refresh
 - Inifite scrolling
@@ -410,7 +424,7 @@ extension AuthenticationAPI: Endpoint {
 
 ```swift
 enum UsersAPI {
-    case Users(SearchFilter)
+    case SearchUsers(Filter)
     case UserDetails(UUID)
     case UserPictures(UUID)
 }
@@ -422,7 +436,7 @@ enum UsersAPI {
 extension UsersAPI: Endpoint {
     public var path: String {
         switch self {
-        case .Users(_):
+        case .SearchUsers(_):
             return "/users"
         case .UserDetails(let uuid):
             return "/users/\(uuid)"
@@ -433,7 +447,7 @@ extension UsersAPI: Endpoint {
 
     public var parameters: [String : AnyObject]? {
         switch self {
-        case .Users(let filter):
+        case .SearchUsers(let filter):
             var params = [String : AnyObject]()
             params["min_age"] = filter.minAge
             params["max_age"] = filter.maxAge
@@ -450,7 +464,13 @@ extension UsersAPI: Endpoint {
 ```
 
 ---
-> "Applications interacting with web services in a significant manner are encouraged to have custom types conform to `URLRequestConvertible` as a way to ensure consistency of requested endpoints."
+
+### Where's the `NSURLRequest`?
+
+^We've achieved something! code is clearer, and that's always a good thing
+
+---
+> "Apps interacting with web services are encouraged to have custom types conform to `URLRequestConvertible` as a way to ensure consistency of requested endpoints."
 
 -- @mattt[^2]
 
@@ -495,14 +515,15 @@ protocol Endpoint: URLRequestConvertible {
 ## Build abstractions **on top** of the problems we're solving **over and over**
 ---
 
-![fit](https://i.imgur.com/SvletJq.png)
+# More time for:
+- Animations
+- Eye-Candy
+- Performance
+- Iterating
 
 ---
 
-# Available for:
-- Consulting
-- Auditing
-- Training
+![fit](https://i.imgur.com/SvletJq.png)
 
 ---
 
