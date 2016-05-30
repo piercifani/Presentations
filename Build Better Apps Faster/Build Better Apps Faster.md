@@ -30,6 +30,9 @@ Theme: Ostrich
 ---
 ## Objective C -> **Swift**
 
+^ Besides safety and speed, the main reason that Swift was created was in order to enable higher level abstraction 
+
+
 ---
 
 ### **Swift** enables us to build **abstractions** that are closer to our **problem domain**
@@ -82,6 +85,8 @@ Theme: Ostrich
 
 
 ## 🤔
+
+^ if all the code we write would be stateless, we'd be solving no real problems for real users
 
 ---
 
